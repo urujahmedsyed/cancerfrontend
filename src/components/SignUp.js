@@ -29,7 +29,7 @@ function SignUp() {
         });
 
         const data = await response.json();
-        if (data.status === 'ok') {
+        if (data.status === 'yaya') {
             // Display success alert
             window.alert('Signup successful!');
             history.push('/login');
