@@ -34,7 +34,7 @@ export default function Predict(){
             formData.append('token',localStorage.getItem('token'))
             formData.append("image",file);
             formData.append("radioValue", radioValue);
-            const {data} = await axios.post(" https://6596-54-172-26-121.ngrok-free.app/predict",formData);
+            const {data} = await axios.post("https://9445-54-172-26-121.ngrok-free.app/predict",formData);
             if(data){
                 setOutput(data.prediction);
                 setPredicted(true);
