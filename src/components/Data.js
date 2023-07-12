@@ -6,7 +6,7 @@ function Data() {
     const [Table, SetTable] = useState(null);
     const [Null, SetNull] = useState(false);
     useEffect(() => {
-        fetch('http://localhost:12345/api/data',{
+        fetch('https://cancerserver.onrender.com/api/data',{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

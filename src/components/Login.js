@@ -11,7 +11,7 @@ function Login() {
 
     async function loginUser(event){
         event.preventDefault();
-        const response = await fetch('http://localhost:12345/api/login',{
+        const response = await fetch('https://cancerserver.onrender.com/api/login',{
         method:'POST',    
         headers:{
                 'Content-Type':'application/json',

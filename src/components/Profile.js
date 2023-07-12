@@ -7,7 +7,7 @@ function Profile() {
 
   useEffect(() => {
     // Fetch the user data from the backend here
-    fetch('http://localhost:12345/api/user', {
+    fetch('https://cancerserver.onrender.com/api/user', {
       method: 'GET',
       credentials: 'include',
     })

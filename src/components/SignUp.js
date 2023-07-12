@@ -15,7 +15,7 @@ function SignUp() {
 
     async function registerUser(event){
         event.preventDefault();
-        const response = await fetch('http://localhost:12345/api/signup',{
+        const response = await fetch('https://cancerserver.onrender.com/signup',{
         method:'POST',    
         headers:{
                 'Content-Type':'application/json',
