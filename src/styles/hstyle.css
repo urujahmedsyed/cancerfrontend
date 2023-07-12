@@ -1,0 +1,41 @@
+
+html,
+body {
+    background-color: rgb(170, 170, 170);
+    height: 100%;
+}
+
+#some12 {
+    float: left;
+    border-radius: 10px;
+    margin-top: 2%;
+    width: 47%;
+    height: 80vh;
+    background-color: rgb(30, 30, 30);
+    margin-left: 2%;
+    text-align: center;
+}
+
+#dome12 {
+    float: right;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 2%;
+    width: 47%;
+    height: 80vh;
+    background-color: rgb(30, 30, 30);
+    margin-right: 2%;
+}
+
+#pfp12 {
+    margin-top: 4%;
+    height: 90%;
+    width: 100%;
+    object-fit: contain;
+}
+#resdesc12{
+    text-align: center;
+    margin-top: 22%;
+    font-size:2vw;
+    width: 50%;
+}

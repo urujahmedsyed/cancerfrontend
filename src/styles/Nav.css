@@ -1,0 +1,31 @@
+
+.nav-item {
+    background-color: #5d96f8;
+    padding: 2px;
+    font-weight:500;
+    color: black;
+    margin-right: 0.6vw;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color:white;
+}
+
+.nav-link {
+    color: black;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #74a7ff;
+    padding: 7px;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+#lg {
+    margin-right: 0.6vw;
+}

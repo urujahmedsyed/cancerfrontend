@@ -1,0 +1,27 @@
+html,body {
+    background-color: rgb(170, 170, 170);
+    height: 100%;
+}
+#dome13 {
+margin-right: 30vw;
+border-radius: 10px;
+margin-top: 8%;
+width: 40vw;
+height: 50vh;
+background-color: rgb(30, 30, 30);
+}
+
+#resdesc13 {
+margin: auto;
+text-align: center;
+font-size: 2vw;
+width: 50%;
+}
+#loginfrms13{
+color: white;
+text-align: left;
+margin-left:15% ;
+}
+.mb-3{
+width: 80%;
+}

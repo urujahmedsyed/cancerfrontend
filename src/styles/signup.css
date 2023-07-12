@@ -1,0 +1,24 @@
+#dome21 {
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 2%;
+    width: 40%;
+    padding-bottom: 5%;
+    background-color: rgb(30, 30, 30);
+}
+
+#resdesc21 {
+    margin: auto;
+    text-align: center;
+    font-size: 2vw;
+    width: 50%;
+    color: white;
+}
+#loginfrms21{
+    color: white;
+    text-align: left;
+    margin-left:15% ;
+}
+.mb-3{
+    width: 80%;
+}

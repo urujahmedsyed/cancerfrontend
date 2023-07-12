@@ -1,0 +1,29 @@
+table, th, td {
+    color: aliceblue;
+    border: 1px solid;
+    padding: 2%;
+}
+table{
+    width: 70vw !important;
+    margin-left: 7vw;
+    margin-right: 3vw;
+}
+th{
+    color: black;
+    background-color: aliceblue;
+}
+html,body {
+    background-color: rgb(170, 170, 170);
+    height: 100%;
+}
+#dome14 {
+margin-top: 5vh !important;
+background-color: rgb(30, 30, 30) !important;
+height: 181vh !important;
+}
+#okform14{
+    margin-left: 4vw !important;
+}
+#resdesc14{
+    margin-left: 33vw !important;
+}

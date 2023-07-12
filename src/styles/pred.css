@@ -1,0 +1,15 @@
+#dome16 {
+    text-align: center;
+    border-radius: 10px;
+    background-color: #cacaca;
+    width: 30vw;
+    margin-left: 20vw;
+    margin-right: 5vw;
+    height: 30vh !important;
+    margin-top: 2rem;
+    font-size: 4px !important;
+}
+
+#dome16 h3 {
+    font-size: 20px;
+  }

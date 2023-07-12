@@ -1,0 +1,39 @@
+#dome11 {
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 2%;
+    width: 40vw;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    height: 50vh;
+    padding-bottom: 5%;
+    background-color: rgb(30, 30, 30);
+}
+
+#resdesc11 {
+    margin: auto;
+    text-align: center;
+    font-size: 2vw;
+    width: 50%;
+}
+
+#loginfrms11 {
+    color: white;
+    text-align: center;
+    margin-left: 6vw;
+}
+
+.mb-3 {
+    width: 80%;
+}
+#btn111,#btn211,#btn311{
+    margin-right: 18%;
+    color: white;
+    background-color: green;
+    margin-top: 5%;
+    border-color: black;
+}
+#btn111:hover,#btn211:hover,#btn311:hover{
+    color:black;
+    background-color: white;
+}
