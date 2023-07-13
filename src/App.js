@@ -9,6 +9,7 @@ import Predict from './components/Predict';
 import Data from './components/Data';
 import ImageUpload from './components/ImageUpload';
 import Hist from './components/Hist';
+import Endopred from './components/Endopred';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
@@ -27,7 +28,7 @@ export default function App() {
       <Route path='/data' element={<Data/>}/>
       <Route path='/yolopred' element={<ImageUpload/>}/>
       <Route path='/hist' element={<Hist/>}/>
-
+      <Route path='/endo' element={<Endopred/>}/>
       {/* <Route path='*' element={<ErrorPage/>}/> */}
     </Routes> 
     </Router>

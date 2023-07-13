@@ -21,6 +21,9 @@ return (
                         <Link class="nav-link" to="/yolopred">Allred Predict</Link>
                     </li>
                     <li class="nav-item">
+                        <Link class="nav-link" to="/endo">Endometrium Predict</Link>
+                    </li>
+                    <li class="nav-item">
                         <Link class="nav-link" to="/predict">Malaria Predict</Link>
                     </li>
                     <li class="nav-item">
