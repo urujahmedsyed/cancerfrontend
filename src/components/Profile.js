@@ -11,9 +11,9 @@ function Profile() {
     fetch('https://cancerserver.onrender.com/api/user', {
       method: 'GET',
       credentials: 'include',
-      headers: {
-        Authorization: `Bearer ${token}`, // Pass the token in the request headers
-      },
+      body: JSON.stringify({
+        token,
+    })
     })
       .then((response) => response.json())
       .then((data) => {
