@@ -137,7 +137,6 @@ export default function ImageUpload() {
     const proportion = prop === 0 ? 0 : prop <= 0.01 ? 1 : prop <= 0.1 ? 2 : prop <= 0.33 ? 3 : prop <= 0.66 ? 4 : 5;
     const allred = proportion + intensity;
     setAllredScore(allred);
-    console.log(allred);
   };
   
 
