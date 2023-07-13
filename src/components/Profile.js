@@ -13,7 +13,7 @@ function Profile() {
       method: 'GET',
       credentials: 'include',
       headers: {
-        Authorization: `Bearer ${token}`, // Pass the token in the request headers
+        Authorization: `${token}`, // Pass the token in the request headers
       },
     };
 
