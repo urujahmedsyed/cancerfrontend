@@ -151,9 +151,10 @@ export default function ImageUpload() {
     }
     const allred = proportionScore + intensity;
     setAllredScore(allred);
-    console.log(proportionScore)
-    console.log(intensity)
-    console.log(allred)
+    console.log(proportionScore);
+    console.log(intensity);
+    console.log(allred);
+    console.log('hi');
   };
   
   
@@ -162,6 +163,7 @@ export default function ImageUpload() {
     if (response && response.n && response.w && response.m && response.s) {
       const counts = [response.n, response.w, response.m, response.s];
       calculateAllredScore(counts);
+      console.log('hi');
     }
   }, [response]);
 
