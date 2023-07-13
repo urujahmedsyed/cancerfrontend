@@ -124,6 +124,21 @@ export default function ImageUpload() {
     const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
     const proportion = Math.round(prop * 100);
   
+    let proportionScore;
+    if (proportion === 0) {
+      proportionScore = 0;
+    } else if (proportion < 1) {
+      proportionScore = 1;
+    } else if (proportion >= 1 && proportion <= 10) {
+      proportionScore = 2;
+    } else if (proportion > 10 && proportion <= 33) {
+      proportionScore = 3;
+    } else if (proportion > 33 && proportion <= 66) {
+      proportionScore = 4;
+    } else {
+      proportionScore = 5;
+    }
+  
     let intensity;
     if (counts[0] >= counts[1] && counts[0] >= counts[2] && counts[0] >= counts[3]) {
       intensity = 0;
@@ -135,9 +150,10 @@ export default function ImageUpload() {
       intensity = 3;
     }
   
-    const allred = proportion + intensity;
+    const allred = proportionScore + intensity;
     setAllredScore(allred);
   };
+  
   
 
   useEffect(() => {
