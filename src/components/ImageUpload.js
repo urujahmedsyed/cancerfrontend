@@ -238,20 +238,12 @@ export default function ImageUpload() {
                   <h3>
                     All : <span>{response.all}</span>
                   </h3>
-                </div>
-                <br></br>
-              </div>
-            )}
-            {predicted && response && (
-              <div id="dome16" className="text-center">
-                <div>
-                  {/* ...existing code... */}
-
+                  <br></br>
                   <h3>
                     AllRed Score: <span>{allredScore}</span>
                   </h3>
                 </div>
-                <br />
+                <br></br>
               </div>
             )}
           </div>
