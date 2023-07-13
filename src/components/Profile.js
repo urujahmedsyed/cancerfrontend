@@ -6,11 +6,12 @@ function Profile() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('token'); // Retrieve the token from the local storage
     fetch('https://cancerserver.onrender.com/api/user', {
       method: 'GET',
       credentials: 'include',
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'), // Pass the JWT token from local storage
+        Authorization: `Bearer ${token}`, // Pass the token in the request headers
       },
     })
       .then((response) => response.json())
@@ -24,6 +25,7 @@ function Profile() {
         console.error('Error fetching user:', error);
       });
   }, []);
+  
 
   return (
     <>
