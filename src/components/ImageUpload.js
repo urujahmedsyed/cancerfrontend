@@ -161,6 +161,7 @@ export default function ImageUpload() {
 
   useEffect(() => {
     if (response && response.n && response.w && response.m && response.s) {
+      console.log('ok');
       const counts = [response.n, response.w, response.m, response.s];
       calculateAllredScore(counts);
       console.log('hi');
