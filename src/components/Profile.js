@@ -8,16 +8,21 @@ function Profile() {
   useEffect(() => {
     const token = localStorage.getItem('token'); // Retrieve the token from the local storage
     console.log('Token:', token);
-    fetch('https://cancerserver.onrender.com/api/user', {
+    
+    const requestOptions = {
       method: 'GET',
       credentials: 'include',
       headers: {
         Authorization: `Bearer ${token}`, // Pass the token in the request headers
       },
-    })
+    };
+
+    console.log('Request:', requestOptions); // Log the request object
+    
+    fetch('https://cancerserver.onrender.com/api/user', requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log('Response:', data); // Log the response object
         if (data.status === 'ok') {
           setUser(data.user);
         }
