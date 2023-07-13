@@ -9,6 +9,9 @@ function Profile() {
     fetch('https://cancerserver.onrender.com/api/user', {
       method: 'GET',
       credentials: 'include',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('token'), // Pass the JWT token from local storage
+      },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -21,7 +24,6 @@ function Profile() {
         console.error('Error fetching user:', error);
       });
   }, []);
-  
 
   return (
     <>
