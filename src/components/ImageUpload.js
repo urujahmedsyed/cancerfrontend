@@ -158,11 +158,12 @@ export default function ImageUpload() {
       console.log(allred);
     };
   
-    if (response && response.n && response.w && response.m && response.s) {
+    if (response && response.n && response.w && response.m && response.s && allredScore === null) {
       const counts = [response.n, response.w, response.m, response.s];
       calculateAllredScore(counts);
     }
-  }, [response]);
+  }, [response, allredScore]);
+  
   
 
   return (
