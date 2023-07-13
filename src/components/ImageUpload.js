@@ -122,12 +122,23 @@ export default function ImageUpload() {
 
   const calculateAllredScore = (counts) => {
     const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
-    const inten = Math.floor((counts[1] + counts[2] * 2 + counts[3] * 3) / (counts[1] + counts[2] + counts[3]));
+    let intensity;
+    
+    if (counts[0] >= counts[1] && counts[0] >= counts[2] && counts[0] >= counts[3]) {
+      intensity = 0;
+    } else if (counts[1] >= counts[0] && counts[1] >= counts[2] && counts[1] >= counts[3]) {
+      intensity = 1;
+    } else if (counts[2] >= counts[0] && counts[2] >= counts[1] && counts[2] >= counts[3]) {
+      intensity = 2;
+    } else {
+      intensity = 3;
+    }
+  
     const proportion = prop === 0 ? 0 : prop <= 0.01 ? 1 : prop <= 0.1 ? 2 : prop <= 0.33 ? 3 : prop <= 0.66 ? 4 : 5;
-    const intensity = counts[1] + counts[2] + counts[3] === 0 ? 0 : inten;
     const allred = proportion + intensity;
     setAllredScore(allred);
   };
+  
 
   useEffect(() => {
     if (response && response.n && response.w && response.m && response.s) {
