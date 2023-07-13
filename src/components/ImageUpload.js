@@ -149,7 +149,9 @@ export default function ImageUpload() {
     } else {
       intensity = 3;
     }
-  
+    console.log(proportionScore)
+    console.log(intensity)
+    console.log(allred)
     const allred = proportionScore + intensity;
     setAllredScore(allred);
   };
