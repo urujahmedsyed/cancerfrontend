@@ -6,7 +6,6 @@ function Profile() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Fetch the user data from the backend here
     fetch('https://cancerserver.onrender.com/api/user', {
       method: 'GET',
       credentials: 'include',
@@ -22,6 +21,7 @@ function Profile() {
         console.error('Error fetching user:', error);
       });
   }, []);
+  
 
   return (
     <>
