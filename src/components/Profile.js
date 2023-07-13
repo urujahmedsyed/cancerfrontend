@@ -7,13 +7,12 @@ function Profile() {
 
   useEffect(() => {
     const token = localStorage.getItem('token'); // Retrieve the token from the local storage
-    console.log(token);
     fetch('https://cancerserver.onrender.com/api/user', {
       method: 'GET',
       credentials: 'include',
-      body: JSON.stringify({
-        token,
-    })
+      headers: {
+        Authorization: `Bearer ${token}`, // Pass the token in the request headers
+      },
     })
       .then((response) => response.json())
       .then((data) => {
