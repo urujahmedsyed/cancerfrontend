@@ -11,51 +11,33 @@ export default function ImageUpload() {
   const [image, setImage] = useState('');
   const [response, setResponse] = useState(null);
   const [convertedImg, setConvertedImg] = useState('');
-  const [allredScore, setAllredScore] = useState(null);
+  const [allredScore, setAllredScore] = useState(null); // State to store the calculated Allred score
 
-  const calculateAllredScore = (counts) => {
-    const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
-    const proportion = Math.round(prop * 100);
 
-    let proportionScore;
-    if (proportion === 0) {
-      proportionScore = 0;
-    } else if (proportion < 1) {
-      proportionScore = 1;
-    } else if (proportion >= 1 && proportion <= 10) {
-      proportionScore = 2;
-    } else if (proportion > 10 && proportion <= 33) {
-      proportionScore = 3;
-    } else if (proportion > 33 && proportion <= 66) {
-      proportionScore = 4;
-    } else {
-      proportionScore = 5;
-    }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (response && response.image) {
+  //       try {
+  //         const { data } = await axios.post(
+  //           'http://localhost:5001/api/check-image',
+  //           { image: response.image },
+  //           { responseType: 'json' }
+  //         );
+  //         console.log(data);
+  //         // if (data.convertedImage) {
+  //         //   setConvertedImg(data.convertedImage);
+  //         // } else {
+  //         //   setConvertedImg('');
+  //         //   console.log('not working');
+  //         // }
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   };
 
-    let intensity;
-    if (counts[0] >= counts[1] && counts[0] >= counts[2] && counts[0] >= counts[3]) {
-      intensity = 0;
-    } else if (counts[1] >= counts[0] && counts[1] >= counts[2] && counts[1] >= counts[3]) {
-      intensity = 1;
-    } else if (counts[2] >= counts[0] && counts[2] >= counts[1] && counts[2] >= counts[3]) {
-      intensity = 2;
-    } else {
-      intensity = 3;
-    }
-
-    const allred = proportionScore + intensity;
-    setAllredScore(allred);
-    console.log(proportionScore);
-    console.log(intensity);
-    console.log(allred);
-  };
-
-  useEffect(() => {
-    if (response && response.n && response.w && response.m && response.s) {
-      const counts = [response.n, response.w, response.m, response.s];
-      calculateAllredScore(counts);
-    }
-  }, [response]);
+  //   fetchData();
+  // }, [response]);
 
   const FileChange = (e) => {
     setOut(false);
@@ -138,13 +120,60 @@ export default function ImageUpload() {
     }
   };
 
+  useEffect(() => {
+    const calculateAllredScore = (counts) => {
+      const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
+      const proportion = Math.round(prop * 100);
+  
+      let proportionScore;
+      if (proportion === 0) {
+        proportionScore = 0;
+      } else if (proportion < 1) {
+        proportionScore = 1;
+      } else if (proportion >= 1 && proportion <= 10) {
+        proportionScore = 2;
+      } else if (proportion > 10 && proportion <= 33) {
+        proportionScore = 3;
+      } else if (proportion > 33 && proportion <= 66) {
+        proportionScore = 4;
+      } else {
+        proportionScore = 5;
+      }
+  
+      let intensity;
+      if (counts[0] >= counts[1] && counts[0] >= counts[2] && counts[0] >= counts[3]) {
+        intensity = 0;
+      } else if (counts[1] >= counts[0] && counts[1] >= counts[2] && counts[1] >= counts[3]) {
+        intensity = 1;
+      } else if (counts[2] >= counts[0] && counts[2] >= counts[1] && counts[2] >= counts[3]) {
+        intensity = 2;
+      } else {
+        intensity = 3;
+      }
+  
+      const allred = proportionScore + intensity;
+      setAllredScore(allred);
+      console.log(proportionScore);
+      console.log(intensity);
+      console.log(allred);
+    };
+  
+    if (response && response.n && response.w && response.m && response.s && (allredScore === null || allredScore === 0)) {
+      const counts = [response.n, response.w, response.m, response.s];
+      calculateAllredScore(counts);
+    }
+  }, [response, allredScore]);
+  
+  
+  
+
   return (
     <>
       <div id="nav1">
         <Nava />
       </div>
       <div className="container-fluid log-welcome">
-        <form className="row justify-content-center" onSubmit={handleFormSubmit}>
+        <form className="row justify-content-center" onSubmit={(e) => handleFormSubmit(e)}>
           <div className="col-9 m-4 p-4 rounded bg-light">
             <p className="fw-bold m-2">Input Scan Image : </p>
             <input className="form-control form-control-sm" type="file" onChange={FileChange} />
@@ -166,7 +195,21 @@ export default function ImageUpload() {
                       alt="output"
                       style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
                     />
-                    <p style={{ marginLeft: '3rem', fontWeight: '500' }}>Prediction</p>
+                    <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Prediction</p>
+                  </div>
+                  <div className="image-container text-center">
+                    {convertedImg ? (
+                      <div>
+                      <img
+                        src={`data:image/png;base64,${convertedImg}`}
+                        alt="output"
+                        style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
+                      />
+                      <p style={{ fontWeight: '500', marginLeft: '1.5rem' }}>Ground Truth</p>
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
                   </div>
                 </>
               )}
