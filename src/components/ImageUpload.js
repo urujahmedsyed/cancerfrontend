@@ -50,12 +50,12 @@ export default function ImageUpload() {
     console.log(allred);
   };
 
-  // useEffect(() => {
-  //   if (response && response.n && response.w && response.m && response.s) {
-  //     const counts = [response.n, response.w, response.m, response.s];
-  //     calculateAllredScore(counts);
-  //   }
-  // }, [response]);
+  useEffect(() => {
+    if (response && response.n && response.w && response.m && response.s) {
+      const counts = [response.n, response.w, response.m, response.s];
+      calculateAllredScore(counts);
+    }
+  }, [response]);
 
   const FileChange = (e) => {
     setOut(false);
@@ -91,7 +91,6 @@ export default function ImageUpload() {
           config
         );
         setResponse(data);
-        calculateAllredScore([data.n, data.w, data.m, data.s]);
         if (data.code === 0) {
           setOutput(data.image);
           await handleCheckImage(file);
@@ -208,7 +207,6 @@ export default function ImageUpload() {
               <div id="dome16" className="text-center">
                 <div>
                   <br></br>
-
                   <br></br>
                   <h3 className="fw-bold" style={{ textDecoration: 'underline' }}>
                     Predicted Counts
@@ -230,7 +228,7 @@ export default function ImageUpload() {
                   </h3>
                   <br></br>
                   <h3>
-                    AllRed Score: <span>{allred}</span>
+                    AllRed Score: <span>{allredScore}</span>
                   </h3>
                 </div>
                 <br></br>
