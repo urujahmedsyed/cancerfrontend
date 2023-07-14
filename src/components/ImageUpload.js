@@ -257,7 +257,7 @@ export default function ImageUpload() {
                   </h3>
                   <br></br>
                   <h3>
-                    AllRed Score: <span>{allredScore}</span>
+                    AllRed Score: <span>{lol}</span>
                   </h3>
                 </div>
                 <br></br>
