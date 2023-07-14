@@ -1,230 +1,168 @@
-export default function BreastCancerPredict() {
+import React, { useState, useEffect } from 'react';
+import Nava from './Nava';
+import axios from 'axios';
+import '../styles/pred.css';
 
+export default function ImageUpload() {
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState('');
   const [predicting, setOut] = useState(false);
   const [predicted, setPredicted] = useState(false);
   const [prediction, setOutput] = useState('');
+  const [image, setImage] = useState('');
   const [response, setResponse] = useState(null);
   const [convertedImg, setConvertedImg] = useState('');
+  const [allredScore, setAllredScore] = useState(null); // State to store the calculated Allred score
 
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (response && response.image) {
+  //       try {
+  //         const { data } = await axios.post(
+  //           'http://localhost:5001/api/check-image',
+  //           { image: response.image },
+  //           { responseType: 'json' }
+  //         );
+  //         console.log(data);
+  //         // if (data.convertedImage) {
+  //         //   setConvertedImg(data.convertedImage);
+  //         // } else {
+  //         //   setConvertedImg('');
+  //         //   console.log('not working');
+  //         // }
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [response]);
 
   const FileChange = (e) => {
-      setOut(false);
-      setPredicted(false);
-      setConvertedImg('');
-      const reader = new FileReader();
-      const selectedFile = e.target.files[0];
-      reader.onloadend = () => {
-          setFile(selectedFile);
-          setImage(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
+    setOut(false);
+    setPredicted(false);
+    setConvertedImg('');
+    const reader = new FileReader();
+    const selectedFile = e.target.files[0];
+    reader.onloadend = () => {
+      setFile(selectedFile);
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
   };
 
   const handleFormSubmit = async (event) => {
-      event.preventDefault();
-      setOut(true);
-      if (file) {
-          const formData = new FormData();
-          formData.append('image', file);
+    event.preventDefault();
+    setOut(true);
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
 
-          try {
-              const response = await fetch('http://localhost:5001/api/yolov5', {
-                  method: 'POST',
-                  body: formData,
-                  headers: {
-                      // 'Content-Type': 'multipart/form-data',
-                      mfa: 'your_header_value',
-                  },
-              });
-              if (!response.ok) {
-                  throw new Error('Request failed with status ' + response.status);
-              }
-              const responseData = await response.json();
-              console.log(responseData);
-              setResponse(responseData);
-              if (responseData.code === 0) {
-                  setOutput(responseData.all);
-                  setPredicted(true);
-              } else {
-                  setPredicted(false);
-              }
-          } catch (error) {
-              console.error(error);
-          }
-      } else {
-          document.getElementById('filered').innerHTML = 'File Could not be Found.';
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          mfa: 'your_header_value', // Replace 'your_header_value' with the actual header value
+        },
+      };
+
+      try {
+        const { data } = await axios.post(
+          'https://790f-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/yolov5',
+          formData,
+          config
+        );
+        setResponse(data);
+        if (data.code === 0) {
+          setOutput(data.image);
+          await handleCheckImage(file);
+          setPredicted(true);
+        } else {
+          setPredicted(false);
+        }
+      } catch (error) {
+        console.error(error);
       }
-      setOut(false);
+    } else {
+      document.getElementById('filered').innerHTML = 'File Could not be Found.';
+    }
+    setOut(false);
   };
 
+  const handleCheckImage = async (file) => {
+    if (file) {
+      const formData = new FormData();
+      formData.append('image', file);
 
-// import React, { useState, useEffect } from 'react';
-// import Nava from './Nava';
-// import axios from 'axios';
-// import '../styles/pred.css';
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          mfa: 'your_header_value', // Replace 'your_header_value' with the actual header value
+        },
+      };
 
-// export default function ImageUpload() {
-//   const [file, setFile] = useState(null);
-//   const [predicting, setOut] = useState(false);
-//   const [predicted, setPredicted] = useState(false);
-//   const [prediction, setOutput] = useState('');
-//   const [image, setImage] = useState('');
-//   const [response, setResponse] = useState(null);
-//   const [convertedImg, setConvertedImg] = useState('');
-//   const [allredScore, setAllredScore] = useState(null); // State to store the calculated Allred score
+      try {
+        const { data } = await axios.post(
+          'https://790f-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/check-image',
+          formData,
+          config
+        );
+        if (data.code === 0 && data.convertedImage) {
+          setConvertedImg(data.convertedImage);
+        } else {
+          setConvertedImg('');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      document.getElementById('filered').innerHTML = 'File Could not be Found.';
+    }
+  };
 
-
-//   // useEffect(() => {
-//   //   const fetchData = async () => {
-//   //     if (response && response.image) {
-//   //       try {
-//   //         const { data } = await axios.post(
-//   //           'http://localhost:5001/api/check-image',
-//   //           { image: response.image },
-//   //           { responseType: 'json' }
-//   //         );
-//   //         console.log(data);
-//   //         // if (data.convertedImage) {
-//   //         //   setConvertedImg(data.convertedImage);
-//   //         // } else {
-//   //         //   setConvertedImg('');
-//   //         //   console.log('not working');
-//   //         // }
-//   //       } catch (error) {
-//   //         console.error(error);
-//   //       }
-//   //     }
-//   //   };
-
-//   //   fetchData();
-//   // }, [response]);
-
-//   const FileChange = (e) => {
-//     setOut(false);
-//     setPredicted(false);
-//     setConvertedImg('');
-//     const reader = new FileReader();
-//     const selectedFile = e.target.files[0];
-//     reader.onloadend = () => {
-//       setFile(selectedFile);
-//       setImage(reader.result);
-//     };
-//     reader.readAsDataURL(selectedFile);
-//   };
-
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-//     setOut(true);
-//     if (file) {
-//       const formData = new FormData();
-//       formData.append('image', file);
-
-//       const config = {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//           mfa: 'your_header_value', // Replace 'your_header_value' with the actual header value
-//         },
-//       };
-
-//       try {
-//         const { data } = await axios.post(
-//           'https://eafe-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/yolov5',
-//           formData,
-//           config
-//         );
-//         setResponse(data);
-//         if (data.code === 0) {
-//           setOutput(data.image);
-//           await handleCheckImage(file);
-//           setPredicted(true);
-//         } else {
-//           setPredicted(false);
-//         }
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     } else {
-//       document.getElementById('filered').innerHTML = 'File Could not be Found.';
-//     }
-//     setOut(false);
-//   };
-
-//   const handleCheckImage = async (file) => {
-//     if (file) {
-//       const formData = new FormData();
-//       formData.append('image', file);
-
-//       const config = {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//           mfa: 'your_header_value', // Replace 'your_header_value' with the actual header value
-//         },
-//       };
-
-//       try {
-//         const { data } = await axios.post(
-//           'https://eafe-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/check-image',
-//           formData,
-//           config
-//         );
-//         if (data.code === 0 && data.convertedImage) {
-//           setConvertedImg(data.convertedImage);
-//         } else {
-//           setConvertedImg('');
-//         }
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     } else {
-//       document.getElementById('filered').innerHTML = 'File Could not be Found.';
-//     }
-//   };
-
-//   useEffect(() => {
-//     const calculateAllredScore = (counts) => {
-//       const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
-//       const proportion = Math.round(prop * 100);
+  useEffect(() => {
+    const calculateAllredScore = (counts) => {
+      const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
+      const proportion = Math.round(prop * 100);
   
-//       let proportionScore;
-//       if (proportion === 0) {
-//         proportionScore = 0;
-//       } else if (proportion < 1) {
-//         proportionScore = 1;
-//       } else if (proportion >= 1 && proportion <= 10) {
-//         proportionScore = 2;
-//       } else if (proportion > 10 && proportion <= 33) {
-//         proportionScore = 3;
-//       } else if (proportion > 33 && proportion <= 66) {
-//         proportionScore = 4;
-//       } else {
-//         proportionScore = 5;
-//       }
+      let proportionScore;
+      if (proportion === 0) {
+        proportionScore = 0;
+      } else if (proportion < 1) {
+        proportionScore = 1;
+      } else if (proportion >= 1 && proportion <= 10) {
+        proportionScore = 2;
+      } else if (proportion > 10 && proportion <= 33) {
+        proportionScore = 3;
+      } else if (proportion > 33 && proportion <= 66) {
+        proportionScore = 4;
+      } else {
+        proportionScore = 5;
+      }
   
-//       let intensity;
-//       if (counts[0] >= counts[1] && counts[0] >= counts[2] && counts[0] >= counts[3]) {
-//         intensity = 0;
-//       } else if (counts[1] >= counts[0] && counts[1] >= counts[2] && counts[1] >= counts[3]) {
-//         intensity = 1;
-//       } else if (counts[2] >= counts[0] && counts[2] >= counts[1] && counts[2] >= counts[3]) {
-//         intensity = 2;
-//       } else {
-//         intensity = 3;
-//       }
+      let intensity;
+      if (counts[0] >= counts[1] && counts[0] >= counts[2] && counts[0] >= counts[3]) {
+        intensity = 0;
+      } else if (counts[1] >= counts[0] && counts[1] >= counts[2] && counts[1] >= counts[3]) {
+        intensity = 1;
+      } else if (counts[2] >= counts[0] && counts[2] >= counts[1] && counts[2] >= counts[3]) {
+        intensity = 2;
+      } else {
+        intensity = 3;
+      }
   
-//       const allred = proportionScore + intensity;
-//       setAllredScore(allred);
-//       console.log(proportionScore);
-//       console.log(intensity);
-//       console.log(allred);
-//     };
+      const allred = proportionScore + intensity;
+      setAllredScore(allred);
+      console.log(proportionScore);
+      console.log(intensity);
+      console.log(allred);
+    };
   
-//     if (response && response.n && response.w && response.m && response.s && allredScore === null) {
-//       const counts = [response.n, response.w, response.m, response.s];
-//       calculateAllredScore(counts);
-//     }
-//   }, [response, allredScore]);
+    if (response && response.n && response.w && response.m && response.s && allredScore === null) {
+      const counts = [response.n, response.w, response.m, response.s];
+      calculateAllredScore(counts);
+    }
+  }, [response, allredScore]);
   
   
 
