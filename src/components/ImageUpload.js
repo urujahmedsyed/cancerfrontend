@@ -258,7 +258,7 @@ export default function ImageUpload() {
                   </h3>
                   <br></br>
                   <h3>
-                    AllRed Score: <span>{lol}</span>
+                    AllRed Score: <span>{calculateAllredScore([response.n,response.w,response.m,response.s])}</span>
                   </h3>
                 </div>
                 <br></br>
