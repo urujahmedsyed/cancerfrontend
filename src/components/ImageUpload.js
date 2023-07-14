@@ -68,7 +68,7 @@ export default function ImageUpload() {
 
       try {
         const { data } = await axios.post(
-          'https://790f-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/yolov5',
+          'https://afc6-2409-408c-1405-265-846a-81c6-c52a-2dbf.ngrok-free.app/api/yolov5',
           formData,
           config
         );
@@ -103,7 +103,7 @@ export default function ImageUpload() {
 
       try {
         const { data } = await axios.post(
-          'https://790f-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/check-image',
+          'https://afc6-2409-408c-1405-265-846a-81c6-c52a-2dbf.ngrok-free.app/api/check-image',
           formData,
           config
         );
