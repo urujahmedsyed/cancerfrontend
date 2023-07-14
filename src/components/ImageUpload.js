@@ -91,7 +91,7 @@ export default function ImageUpload() {
           config
         );
         setResponse(data);
-        calculateAllredScore([response.n, response.w, response.m, response.s]);
+        calculateAllredScore([data.n, data.w, data.m, data.s]);
         if (data.code === 0) {
           setOutput(data.image);
           await handleCheckImage(file);
