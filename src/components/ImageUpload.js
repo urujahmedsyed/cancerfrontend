@@ -158,9 +158,9 @@ export default function ImageUpload() {
       console.log(allred);
     };
   
-    if (response && response.n && response.w && response.m && response.s && (allredScore === null || allredScore === 0)) {
+    if (response && response.n && response.w && response.m && response.s){
       const counts = [response.n, response.w, response.m, response.s];
-      calculateAllredScore(counts);
+      const lol=calculateAllredScore(counts);
     }
   }, [response, allredScore]);
   
@@ -196,20 +196,6 @@ export default function ImageUpload() {
                       style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
                     />
                     <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Prediction</p>
-                  </div>
-                  <div className="image-container text-center">
-                    {convertedImg ? (
-                      <div>
-                      <img
-                        src={`data:image/png;base64,${convertedImg}`}
-                        alt="output"
-                        style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
-                      />
-                      <p style={{ fontWeight: '500', marginLeft: '1.5rem' }}>Ground Truth</p>
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
                   </div>
                 </>
               )}
