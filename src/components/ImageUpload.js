@@ -68,7 +68,7 @@ export default function ImageUpload() {
 
       try {
         const { data } = await axios.post(
-          'https://eafe-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/yolov5',
+          'https://f1df-54-172-26-121.ngrok-free.app/api/yolov5',
           formData,
           config
         );
@@ -103,7 +103,7 @@ export default function ImageUpload() {
 
       try {
         const { data } = await axios.post(
-          'https://eafe-2409-408c-1405-265-c540-589b-652b-ab69.ngrok.io/api/check-image',
+          'https://f1df-54-172-26-121.ngrok-free.app/api/check-image',
           formData,
           config
         );
@@ -158,12 +158,11 @@ export default function ImageUpload() {
       console.log(allred);
     };
   
-    if (response && response.n && response.w && response.m && response.s && (allredScore === null || allredScore === 0)) {
+    if (response && response.n && response.w && response.m && response.s && allredScore === null) {
       const counts = [response.n, response.w, response.m, response.s];
       calculateAllredScore(counts);
     }
   }, [response, allredScore]);
-  
   
   
 
