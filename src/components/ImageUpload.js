@@ -12,6 +12,7 @@ export default function ImageUpload() {
   const [response, setResponse] = useState(null);
   const [convertedImg, setConvertedImg] = useState('');
   const [allredScore, setAllredScore] = useState(null); // State to store the calculated Allred score
+  const lol=null;
 
 
   // useEffect(() => {
@@ -160,7 +161,7 @@ export default function ImageUpload() {
   
     if (response && response.n && response.w && response.m && response.s){
       const counts = [response.n, response.w, response.m, response.s];
-      const lol=calculateAllredScore(counts);
+      lol=calculateAllredScore(counts);
     }
   }, [response, allredScore]);
   
