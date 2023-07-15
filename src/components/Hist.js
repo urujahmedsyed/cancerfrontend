@@ -35,7 +35,7 @@ const Hist = () => {
     formData.append('input_image', selectedFile);
 
     axios
-      .post('https://b244-2409-408c-1405-265-4f3-e610-a8ec-3c32.ngrok-free.app /api/execute-notebook', formData)
+      .post('https://b244-2409-408c-1405-265-4f3-e610-a8ec-3c32.ngrok-free.app/api/execute-notebook', formData)
       .then((response) => {
         setResult(response.data);
         setMaskOverlayImage(`data:image/png;base64,${response.data.mask_overlay}`);
