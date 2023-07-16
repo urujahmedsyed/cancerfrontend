@@ -215,7 +215,7 @@ export default function ImageUpload() {
                 </>
               )}
             </div>
-            {predicted && response && (
+            {predicted && response && allredScore (
               <div id="dome16" className="text-center">
                 <div>
                   <br></br>
@@ -233,7 +233,7 @@ export default function ImageUpload() {
                     M : <span>{response.m}</span>
                   </h3>
                   <h3>
-                    S : <span>{counts.s}</span>
+                    S : <span>{response.s}</span>
                   </h3>
                   <h3>
                     All : <span>{response.all}</span>
