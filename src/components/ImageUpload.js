@@ -60,6 +60,7 @@ export default function ImageUpload() {
     if (file) {
       const formData = new FormData();
       formData.append('image', file);
+      resizeColorLegend(file);
 
       const config = {
         headers: {
@@ -133,25 +134,16 @@ export default function ImageUpload() {
     setAllredScore(allred);
   };
 
-  useEffect(() => {
-    // Resize the colorlegend image based on the height of the input image
-    const resizeColorLegend = () => {
-      const inputImage = document.getElementById('inputImage');
-      const colorLegendImage = document.getElementById('colorLegendImage');
-      if (inputImage && colorLegendImage) {
-        const inputImageHeight = inputImage.clientHeight;
-        colorLegendImage.style.height = `${inputImageHeight}px`;
-        colorLegendImage.style.width = `${inputImageHeight}px`;
-      }
-    };
 
-    // Call the resize function on initial load and whenever the input image changes
-    resizeColorLegend();
-    window.addEventListener('resize', resizeColorLegend);
-    return () => {
-      window.removeEventListener('resize', resizeColorLegend);
-    };
-  }, [image]);
+  function resizeColorLegend(image1){
+    const inputImage = image1;
+    const colorLegendImage = document.getElementById('colorLegendImage');
+    if (inputImage && colorLegendImage) {
+      const inputImageHeight = inputImage.clientHeight;
+      colorLegendImage.style.height = `${inputImageHeight}px`;
+      colorLegendImage.style.width = `${inputImageHeight}px`;
+    }
+  };
 
   return (
     <>
