@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Nava from './Nava';
 import axios from 'axios';
 import '../styles/pred.css';
+import colorlegend from '../imgs/colorlegend.png'
+
 
 export default function Endopred() {
   const [file, setFile] = useState(null);
