@@ -68,7 +68,7 @@ export default function Endopred() {
 
       try {
         const { data } = await axios.post(
-          'https://96ad-49-37-156-122.ngrok-free.app/api/yolov5',
+          'https://e7c9-54-86-33-43.ngrok-free.app/api/yolov5',
           formData,
           config
         );
@@ -103,7 +103,7 @@ export default function Endopred() {
 
       try {
         const { data } = await axios.post(
-          'https://96ad-49-37-156-122.ngrok-free.app/api/check-image',
+          'https://e7c9-54-86-33-43.ngrok-free.app/api/check-image',
           formData,
           config
         );
