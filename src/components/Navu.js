@@ -23,7 +23,7 @@ return (
                     </li> */}
                 </ul>
                 <Link class="btn btn-light" to="/login" role="button" id="lg" style={{"font-weight":"500"}}>Login</Link>
-                <Link class="btn btn-light" to="/signup" role="button" id="su" style={{"font-weight":"500"}}>Sign Up</Link>
+                <Link class="btn btn-light" to="/phsignup" role="button" id="su" style={{"font-weight":"500"}}>Sign Up</Link>
             </div>
         </div>
     </nav>

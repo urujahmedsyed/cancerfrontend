@@ -11,6 +11,7 @@ import ImageUpload from './components/ImageUpload';
 import Hist from './components/Hist';
 import Endopred from './components/Endopred';
 import React from 'react';
+import PhSignUp from './components/PhSignUp,js';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
       <Route path='/analysis' element={<Analysis/>}/>
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/signup' element={<SignUp/>}/>
+      <Route path='/phsignup' element={<PhSignUp/>}/>
       <Route path='/predict' element={<Predict/>}/>
       <Route path='/data' element={<Data/>}/>
       <Route path='/yolopred' element={<ImageUpload/>}/>
