@@ -165,20 +165,6 @@ export default function ImageUpload() {
                     <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Prediction</p>
                   </div>
                   <div className="image-container text-center">
-                    {convertedImg ? (
-                      <div>
-                      <img
-                        src={`data:image/png;base64,${convertedImg}`}
-                        alt="output"
-                        style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
-                      />
-                      <p style={{ fontWeight: '500', marginLeft: '1.5rem' }}>Ground Truth</p>
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
-                  </div>
-                  <div className="image-container text-center">
                     <img
                       src={colorlegend}
                       alt="Color Legend"

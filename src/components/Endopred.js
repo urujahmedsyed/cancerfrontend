@@ -191,6 +191,14 @@ export default function Endopred() {
                       <div></div>
                     )}
                   </div>
+                  <div className="image-container text-center">
+                    <img
+                      src={colorlegend}
+                      alt="Color Legend"
+                      style={{ height: '200px', marginLeft: '2rem', border: '1px solid black' }}
+                    />
+                    <p style={{ marginLeft: '3rem',fontWeight: '500' }}></p>
+                  </div>
                 </>
               )}
             </div>
