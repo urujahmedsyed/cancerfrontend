@@ -134,12 +134,24 @@ export default function ImageUpload() {
   };
 
   useEffect(() => {
-    if (response && response.n && response.w && response.m && response.s) {
-      const counts = [response.n, response.w, response.m, response.s];
-      console.log('hello')
-      calculateAllredScore(counts);
-    }
-  }, [response]);
+    // Resize the colorlegend image based on the height of the input image
+    const resizeColorLegend = () => {
+      const inputImage = document.getElementById('inputImage');
+      const colorLegendImage = document.getElementById('colorLegendImage');
+      if (inputImage && colorLegendImage) {
+        const inputImageHeight = inputImage.clientHeight;
+        colorLegendImage.style.height = `${inputImageHeight}px`;
+        colorLegendImage.style.width = `${inputImageHeight}px`;
+      }
+    };
+
+    // Call the resize function on initial load and whenever the input image changes
+    resizeColorLegend();
+    window.addEventListener('resize', resizeColorLegend);
+    return () => {
+      window.removeEventListener('resize', resizeColorLegend);
+    };
+  }, [image]);
 
   return (
     <>
