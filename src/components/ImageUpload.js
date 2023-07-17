@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nava from './Nava';
 import axios from 'axios';
 import '../styles/pred.css';
+import colorlegend from '../../public/colorlegend.png'
 
 export default function ImageUpload() {
   const [file, setFile] = useState(null);
@@ -183,6 +184,14 @@ export default function ImageUpload() {
                     ) : (
                       <div></div>
                     )}
+                  </div>
+                  <div className="image-container text-center">
+                    <img
+                      src={colorlegend}
+                      alt="Color Legend"
+                      style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
+                    />
+                    <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Color Legend</p>
                   </div>
                 </>
               )}
