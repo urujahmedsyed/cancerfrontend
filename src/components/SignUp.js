@@ -15,8 +15,7 @@ function SignUp() {
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
 
-    async function sendOtp(event) {
-        event.preventDefault();
+    async function sendOtp() {
         const response = await fetch('https://cancerserver.onrender.com/api/send-otp', {
             method: 'POST',
             headers: {
