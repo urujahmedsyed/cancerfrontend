@@ -2,10 +2,10 @@ import React from "react";
 import '../styles/signup.css';
 import Navu from './Navu';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom"; // Import useHistory instead of useNavigate
 
 function SignUp() {
-  const history = useNavigate();
+  const history = useHistory(); // Use useHistory instead of useNavigate
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [uname, setUname] = useState('');
