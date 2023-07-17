@@ -54,17 +54,24 @@ function SignUp() {
                 otp,
             }),
         });
-
+    
         const data = await response.json();
         if (data.status === 'yaya') {
             // Display success alert
             window.alert('Signup successful!');
             history.push('/login');
+        } else if (data.status === 'error' && data.error === 'Duplicate email') {
+            // Display duplicate email error message
+            window.alert('Email already exists. Please use a different email.');
+        } else if (data.status === 'error' && data.error === 'Invalid OTP') {
+            // Display invalid OTP error message
+            window.alert('Invalid OTP. Please enter the correct OTP.');
         } else {
-            // Display invalid signup alert
-            window.alert('Invalid signup!');
+            // Display generic signup error message
+            window.alert('Failed to signup. Please try again.');
         }
     }
+    
 
     return (
         <>
