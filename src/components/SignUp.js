@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import '../styles/signup.css';
+import Navu from './Navu';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
