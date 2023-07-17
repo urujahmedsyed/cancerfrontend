@@ -74,6 +74,8 @@ export default function ImageUpload() {
         );
         setResponse(data);
         if (data.code === 0) {
+          setArr([data.n, data.w, data.m, data.s]);
+          calculateAllredScore([data.n, data.w, data.m, data.s]);
           setOutput(data.image);
           await handleCheckImage(file);
           setPredicted(true);
@@ -120,7 +122,7 @@ export default function ImageUpload() {
     }
   };
 
-  const calculateAllredScore = (counts) => {
+  function calculateAllredScore(counts){
     const prop = (counts[1] + counts[2] + counts[3]) / (counts[0] + counts[1] + counts[2] + counts[3]);
     const inten = Math.floor((counts[1] + counts[2] * 2 + counts[3] * 3) / (counts[1] + counts[2] + counts[3]));
     const proportion = prop === 0 ? 0 : prop <= 0.01 ? 1 : prop <= 0.1 ? 2 : prop <= 0.33 ? 3 : prop <= 0.66 ? 4 : 5;
