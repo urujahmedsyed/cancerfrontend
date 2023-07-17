@@ -172,6 +172,19 @@ function SignUp() {
                 placeholder="Password"
               />
             </div>
+            <div class="mb-3">
+              <label for="exampleInputMobileNo1" class="form-label">
+                Mobile No.
+              </label>
+              <input
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                type="number"
+                class="form-control"
+                id="exampleInputMobileNo1"
+                placeholder="Mobile Number"
+              />
+            </div>
             <br />
             {!otpSent && ( // Render the Send OTP button only if OTP has not been sent
               <button
