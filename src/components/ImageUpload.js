@@ -225,6 +225,7 @@ export default function ImageUpload() {
               <div id="dome16" className="text-center">
                 <div>
                   <br></br>
+                  <br></br>
                   <h3 className="fw-bold" style={{ textDecoration: 'underline' }}>
                     Predicted Counts
                   </h3>
