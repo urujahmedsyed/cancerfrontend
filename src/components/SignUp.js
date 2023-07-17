@@ -133,22 +133,28 @@ function SignUp() {
                 id="exampleInputMobileNo1"
                 placeholder="Mobile Number" />
             </div>
-            {isOtpSent && (
-              <div class="mb-3">
-                <label for="exampleInputOTP" class="form-label">Enter OTP</label>
-                <input
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  type="text"
-                  class="form-control"
-                  id="exampleInputOTP"
-                  placeholder="OTP" />
-              </div>
-            )}
             <br />
-            <button type="submit" class="btn btn-primary">
-              {isOtpSent ? "Verify OTP & Sign Up" : "Send OTP"}
-            </button>
+            {!isOtpSent ? (
+              <button type="submit" class="btn btn-primary" onClick={sendOtp}>
+                Send OTP
+              </button>
+            ) : (
+              <>
+                <div class="mb-3">
+                  <label for="exampleInputOTP" class="form-label">Enter OTP</label>
+                  <input
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    type="text"
+                    class="form-control"
+                    id="exampleInputOTP"
+                    placeholder="OTP" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Verify OTP & Sign Up
+                </button>
+              </>
+            )}
           </form>
         </div>
       </div>
