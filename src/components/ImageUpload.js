@@ -10,6 +10,7 @@ export default function ImageUpload() {
   const [prediction, setOutput] = useState('');
   const [image, setImage] = useState('');
   const [response, setResponse] = useState(null);
+  const [arr, setArr] = useState(null);
   const [convertedImg, setConvertedImg] = useState('');
   const [allredScore, setAllredScore] = useState(null); // State to store the calculated Allred score
 
