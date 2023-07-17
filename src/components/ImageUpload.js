@@ -60,7 +60,6 @@ export default function ImageUpload() {
     if (file) {
       const formData = new FormData();
       formData.append('image', file);
-      resizeColorLegend(file);
 
       const config = {
         headers: {
@@ -135,16 +134,6 @@ export default function ImageUpload() {
   };
 
 
-  function resizeColorLegend(image1){
-    const inputImage = image1;
-    const colorLegendImage = document.getElementById('colorLegendImage');
-    if (inputImage && colorLegendImage) {
-      const inputImageHeight = inputImage.clientHeight;
-      colorLegendImage.style.height = `${inputImageHeight}px`;
-      colorLegendImage.style.width = `${inputImageHeight}px`;
-    }
-  };
-
   return (
     <>
       <div id="nav1">
@@ -193,7 +182,7 @@ export default function ImageUpload() {
                     <img
                       src={colorlegend}
                       alt="Color Legend"
-                      style={{ height: 'auto', marginLeft: '2rem', border: '1px solid black' }}
+                      style={{ height: '200', marginLeft: '2rem', border: '1px solid black' }}
                     />
                     <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Color Legend</p>
                   </div>
