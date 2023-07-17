@@ -13,7 +13,6 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [hospital, setHospital] = useState('');
   const [otp, setOtp] = useState('');
-  const [isOtpSent, setIsOtpSent] = useState(false);
 
   async function sendOtp() {
     const response = await fetch('https://cancerserver.onrender.com/api/send-otp', {
@@ -28,15 +27,37 @@ function SignUp() {
 
     const data = await response.json();
     if (data.status === 'ok') {
-      setIsOtpSent(true);
       window.alert('OTP sent successfully!');
     } else {
       window.alert('Failed to send OTP. Please try again!');
     }
   }
 
-  async function registerUser(event) {
+  async function verifyOtp(event) {
     event.preventDefault();
+    const response = await fetch('https://cancerserver.onrender.com/api/verify-otp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        otp,
+        email,
+      }),
+    });
+
+    const data = await response.json();
+    if (data.status === 'verified') {
+      // Display success alert
+      window.alert('OTP verified!');
+      registerUser();
+    } else {
+      // Display invalid OTP alert
+      window.alert('Invalid OTP. Please try again!');
+    }
+  }
+
+  async function registerUser() {
     const response = await fetch('https://cancerserver.onrender.com/api/signup', {
       method: 'POST',
       headers: {
@@ -72,7 +93,7 @@ function SignUp() {
           <h2><br />User Signup</h2>
         </div>
         <div id="loginfrms21">
-          <form onSubmit={isOtpSent ? registerUser : sendOtp}>
+          <form onSubmit={verifyOtp}>
             <div class="mb-3">
               <label for="exampleInputName1" class="form-label">Name</label>
               <input
@@ -134,27 +155,24 @@ function SignUp() {
                 placeholder="Mobile Number" />
             </div>
             <br />
-            {!isOtpSent ? (
-              <button type="submit" class="btn btn-primary" onClick={sendOtp}>
-                Send OTP
-              </button>
-            ) : (
-              <>
-                <div class="mb-3">
-                  <label for="exampleInputOTP" class="form-label">Enter OTP</label>
-                  <input
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    type="text"
-                    class="form-control"
-                    id="exampleInputOTP"
-                    placeholder="OTP" />
-                </div>
-                <button type="submit" class="btn btn-primary">
-                  Verify OTP & Sign Up
-                </button>
-              </>
-            )}
+            <button type="button" class="btn btn-primary" onClick={sendOtp}>
+              Send OTP
+            </button>
+            <br />
+            <br />
+            <div class="mb-3">
+              <label for="exampleInputOTP" class="form-label">Enter OTP</label>
+              <input
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                type="text"
+                class="form-control"
+                id="exampleInputOTP"
+                placeholder="OTP" />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Verify OTP & Sign Up
+            </button>
           </form>
         </div>
       </div>
