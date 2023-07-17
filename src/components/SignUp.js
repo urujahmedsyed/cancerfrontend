@@ -51,11 +51,12 @@ function SignUp() {
           email,
         }),
       });
-
+  
       const data = await response.json();
       if (data.status === 'verified') {
         // Display success alert
         window.alert('OTP verified!');
+        setOtp(''); // Reset OTP state
         registerUser();
       } else {
         // Display invalid OTP alert
@@ -66,6 +67,7 @@ function SignUp() {
       window.alert('Failed to verify OTP. Please try again!');
     }
   }
+  
 
   async function registerUser() {
     try {
