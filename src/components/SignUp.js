@@ -1,11 +1,8 @@
-import React from "react";
-import '../styles/signup.css';
-import Navu from './Navu';
-import { useState } from "react";
-import { useHistory } from "react-router-dom"; // Import useHistory instead of useNavigate
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const history = useHistory(); // Use useHistory instead of useNavigate
+  const history = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [uname, setUname] = useState('');
@@ -15,75 +12,91 @@ function SignUp() {
   const [otp, setOtp] = useState('');
 
   async function sendOtp() {
-    const response = await fetch('https://cancerserver.onrender.com/api/send-otp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-      }),
-    });
+    try {
+      const response = await fetch('https://cancerserver.onrender.com/api/send-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      });
 
-    const data = await response.json();
-    if (data.status === 'ok') {
-      window.alert('OTP sent successfully!');
-    } else {
+      const data = await response.json();
+      if (data.status === 'ok') {
+        window.alert('OTP sent successfully!');
+      } else {
+        window.alert('Failed to send OTP. Please try again!');
+      }
+    } catch (error) {
+      console.error('Error sending OTP:', error);
       window.alert('Failed to send OTP. Please try again!');
     }
   }
 
   async function verifyOtp(event) {
     event.preventDefault();
-    const response = await fetch('https://cancerserver.onrender.com/api/verify-otp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        otp,
-        email,
-      }),
-    });
+    try {
+      const response = await fetch('https://cancerserver.onrender.com/api/verify-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          otp,
+          email,
+        }),
+      });
 
-    const data = await response.json();
-    if (data.status === 'verified') {
-      // Display success alert
-      window.alert('OTP verified!');
-      registerUser();
-    } else {
-      // Display invalid OTP alert
-      window.alert('Invalid OTP. Please try again!');
+      const data = await response.json();
+      if (data.status === 'verified') {
+        // Display success alert
+        window.alert('OTP verified!');
+        registerUser();
+      } else {
+        // Display invalid OTP alert
+        window.alert('Invalid OTP. Please try again!');
+      }
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+      window.alert('Failed to verify OTP. Please try again!');
     }
   }
 
   async function registerUser() {
-    const response = await fetch('https://cancerserver.onrender.com/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        uname,
-        mobile,
-        password,
-        hospital,
-        otp,
-      }),
-    });
+    try {
+      const response = await fetch('https://cancerserver.onrender.com/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          uname,
+          mobile,
+          password,
+          hospital,
+          otp,
+        }),
+      });
 
-    const data = await response.json();
-    if (data.status === 'yaya') {
-      // Display success alert
-      window.alert('Signup successful!');
-      history.push('/login');
-    } else {
-      // Display invalid signup alert
-      window.alert('Invalid signup!');
+      const data = await response.json();
+      if (data.status === 'yaya') {
+        // Display success alert
+        window.alert('Signup successful!');
+        history.push('/login');
+      } else {
+        // Display invalid signup alert
+        window.alert('Invalid signup!');
+      }
+    } catch (error) {
+      console.error('Error registering user:', error);
+      window.alert('Failed to register user. Please try again!');
     }
   }
+
 
   return (
     <>
