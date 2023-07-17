@@ -15,7 +15,8 @@ function SignUp() {
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
 
-    async function sendOtp() {
+    async function sendOtp(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
         const response = await fetch('https://cancerserver.onrender.com/api/send-otp', {
             method: 'POST',
             headers: {
@@ -25,7 +26,7 @@ function SignUp() {
                 email,
             }),
         });
-
+    
         const data = await response.json();
         if (data.status === 'ok') {
             setIsOtpSent(true);
@@ -34,6 +35,7 @@ function SignUp() {
             window.alert('Failed to send OTP. Please try again!');
         }
     }
+    
 
     async function registerUser(event) {
         event.preventDefault();
