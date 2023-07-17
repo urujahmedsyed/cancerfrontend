@@ -182,7 +182,7 @@ export default function ImageUpload() {
                     <img
                       src={colorlegend}
                       alt="Color Legend"
-                      style={{ height: '200', marginLeft: '2rem', border: '1px solid black' }}
+                      style={{ height: '200px', marginLeft: '2rem', border: '1px solid black' }}
                     />
                     <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Color Legend</p>
                   </div>
