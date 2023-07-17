@@ -25,10 +25,11 @@ function SignUp() {
           email,
         }),
       });
-
+  
       const data = await response.json();
       if (data.status === 'ok') {
         window.alert('OTP sent successfully!');
+        setOtp(data.otp); // Store the received OTP in the state
       } else {
         window.alert('Failed to send OTP. Please try again!');
       }
@@ -37,6 +38,7 @@ function SignUp() {
       window.alert('Failed to send OTP. Please try again!');
     }
   }
+  
 
   async function verifyOtp(event) {
     event.preventDefault();
@@ -53,20 +55,21 @@ function SignUp() {
       });
   
       const data = await response.json();
-      if (data.status === 'verified') {
-        // Display success alert
+      if (response.ok) {
+        // OTP verification successful
         window.alert('OTP verified!');
         setOtp(''); // Reset OTP state
         registerUser();
       } else {
-        // Display invalid OTP alert
-        window.alert('Invalid OTP. Please try again!');
+        // OTP verification failed
+        window.alert(data.message || 'Failed to verify OTP. Please try again!');
       }
     } catch (error) {
       console.error('Error verifying OTP:', error);
       window.alert('Failed to verify OTP. Please try again!');
     }
   }
+  
   
 
   async function registerUser() {
