@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nava from './Nava';
 import axios from 'axios';
 import '../styles/pred.css';
-import colorlegend from '../../public/colorlegend.png'
+import colorlegend from '../imgs/colorlegend.png'
 
 export default function ImageUpload() {
   const [file, setFile] = useState(null);
