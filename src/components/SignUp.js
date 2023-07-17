@@ -15,8 +15,8 @@ function SignUp() {
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
 
-    async function sendOtp(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+    async function sendOtp() {
+        event.preventDefault();
         const response = await fetch('https://cancerserver.onrender.com/api/send-otp', {
             method: 'POST',
             headers: {
@@ -26,7 +26,7 @@ function SignUp() {
                 email,
             }),
         });
-    
+
         const data = await response.json();
         if (data.status === 'ok') {
             setIsOtpSent(true);
@@ -35,7 +35,6 @@ function SignUp() {
             window.alert('Failed to send OTP. Please try again!');
         }
     }
-    
 
     async function registerUser(event) {
         event.preventDefault();
@@ -54,24 +53,17 @@ function SignUp() {
                 otp,
             }),
         });
-    
+
         const data = await response.json();
         if (data.status === 'yaya') {
             // Display success alert
             window.alert('Signup successful!');
             history.push('/login');
-        } else if (data.status === 'error' && data.error === 'Duplicate email') {
-            // Display duplicate email error message
-            window.alert('Email already exists. Please use a different email.');
-        } else if (data.status === 'error' && data.error === 'Invalid OTP') {
-            // Display invalid OTP error message
-            window.alert('Invalid OTP. Please enter the correct OTP.');
         } else {
-            // Display generic signup error message
-            window.alert('Failed to signup. Please try again.');
+            // Display invalid signup alert
+            window.alert('Invalid signup!');
         }
     }
-    
 
     return (
         <>
