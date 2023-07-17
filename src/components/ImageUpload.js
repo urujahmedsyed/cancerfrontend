@@ -184,7 +184,7 @@ export default function ImageUpload() {
                       alt="Color Legend"
                       style={{ height: '200px', marginLeft: '2rem', border: '1px solid black' }}
                     />
-                    <p style={{ marginLeft: '3rem',fontWeight: '500' }}>Color Legend</p>
+                    <p style={{ marginLeft: '3rem',fontWeight: '500' }}></p>
                   </div>
                 </>
               )}
