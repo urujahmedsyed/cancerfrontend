@@ -93,7 +93,7 @@ function SignUp() {
           <h2><br />User Signup</h2>
         </div>
         <div id="loginfrms21">
-          <form onSubmit={verifyOtp}>
+          <form>
             <div class="mb-3">
               <label for="exampleInputName1" class="form-label">Name</label>
               <input
@@ -170,7 +170,7 @@ function SignUp() {
                 id="exampleInputOTP"
                 placeholder="OTP" />
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" onClick={verifyOtp}>
               Verify OTP & Sign Up
             </button>
           </form>
