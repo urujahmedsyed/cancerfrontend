@@ -90,7 +90,6 @@ function SignUp() {
       }
     } catch (error) {
       console.error("Error registering user:", error);
-      window.alert("Failed to register user. Please try again!");
     }
   }
 
