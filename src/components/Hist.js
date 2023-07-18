@@ -20,7 +20,7 @@ const Hist = () => {
     formData.append('input_image', selectedFile);
 
     axios
-      .post('https://d330-54-86-33-43.ngrok-free.app/reinhardt-normalization', formData)
+      .post('https://d330-54-86-33-43.ngrok-free.app/api/reinhardt-normalization', formData)
       .then((response) => {
         setResult(response.data);
         setNormalizedImage(response.data.normalized_image);
