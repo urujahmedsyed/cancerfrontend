@@ -20,7 +20,7 @@ const Hist = () => {
     formData.append('input_image', selectedFile);
 
     axios
-      .post('https://e4fb-54-86-33-43.ngrok-free.app/api/reinhardt-normalization', formData)
+      .post('https://d330-54-86-33-43.ngrok-free.app/reinhardt-normalization', formData)
       .then((response) => {
         setResult(response.data);
         setNormalizedImage(response.data.normalized_image);
@@ -35,7 +35,7 @@ const Hist = () => {
     formData.append('input_image', selectedFile);
 
     axios
-      .post('https://e4fb-54-86-33-43.ngrok-free.app/api/execute-notebook', formData)
+      .post('https://d330-54-86-33-43.ngrok-free.app/api/execute-notebook', formData)
       .then((response) => {
         setResult(response.data);
         setMaskOverlayImage(`data:image/png;base64,${response.data.mask_overlay}`);
